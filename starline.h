@@ -12,9 +12,9 @@
 int starline_select_thermal(char* buf, int max_bytes);
 int starline_select_slip(char* buf, int max_bytes);
 
-int starline_set_charset(char* buf, unsigned char charset, int max_bytes);
-int starline_set_zero_style(char* buf, bool slashed, int max_bytes);
-int starline_set_character_spacing(char* buf, uint8_t spacing, int max_bytes);
+int starline_set_charset(char* buf, int max_bytes, uint8_t charset);
+int starline_set_zero_style(char* buf, int max_bytes, bool slashed);
+int starline_set_character_spacing(char* buf, int max_bytes, uint8_t spacing);
 
 enum starline_barcode_type {
   BARCODE_UPC_E = 0,
@@ -36,7 +36,7 @@ enum starline_barcode_print_option {
 };
 
 // refer to programmer's manual for mode values cba to model them here
-int starline_print_barcode(char* buf, enum starline_barcode_type bc_type, enum starline_barcode_print_option bc_print_opt, uint8_t bc_mode, uint8_t bc_height, char* data, int data_len, int max_bytes);
+int starline_print_barcode(char* buf, int max_bytes, enum starline_barcode_type bc_type, enum starline_barcode_print_option bc_print_opt, uint8_t bc_mode, uint8_t bc_height, char* data, int data_len);
 
 // these two are the same
 int starline_set_pitch_12(char* buf, int max_bytes);
@@ -53,16 +53,16 @@ int starline_set_triplepulse(char* buf, int max_bytes);
 
 int starline_set_doublewidth(char* buf, int max_bytes);
 int starline_reset_width(char* buf, int max_bytes);
-int starline_set_width(char* buf, uint8_t width, int max_bytes);
+int starline_set_width(char* buf, int max_bytes, uint8_t width);
 
 int starline_set_doubleheight(char* buf, int max_bytes);
 int starline_reset_height(char* buf, int max_bytes);
 int starline_set_height(char* buf, uint8_t height, int max_bytes);
 
-int starline_set_width_height(char* buf, uint8_t height, uint8_t width, int max_bytes);
+int starline_set_width_height(char* buf, int max_bytes, uint8_t height, uint8_t width);
 
-int starline_set_underline(char* buf, bool underline, int max_bytes);
-int starline_set_overline(char* buf, bool overline, int max_bytes);
+int starline_set_underline(char* buf, int max_bytes, bool underline);
+int starline_set_overline(char* buf, int max_bytes, bool overline);
 
 int starline_set_highlight(char* buf, int max_bytes);
 int starline_reset_highlight(char* buf, int max_bytes);
@@ -74,20 +74,20 @@ int starline_reset_invert(char* buf, int max_bytes);
 int starline_set_emphasis(char* buf, int max_bytes);
 int starline_reset_emphasis(char* buf, int max_bytes);
 
-int starline_set_bidirectional(char* buf, char bidi, int max_bytes);
+int starline_set_bidirectional(char* buf, int max_bytes, char bidi);
 
-int starline_set_page_length_lines(char* buf, uint8_t lines, int max_bytes);
-int starline_set_page_length_inches(char* buf, uint8_t inches, int max_bytes);
+int starline_set_page_length_lines(char* buf, int max_bytes, uint8_t lines);
+int starline_set_page_length_inches(char* buf, int max_bytes, uint8_t inches);
 
-int starline_set_bottom_margin(char* buf, uint8_t lines, int max_bytes);
+int starline_set_bottom_margin(char* buf, int max_bytes, uint8_t lines);
 int starline_cancel_bottom_margin(char* buf, int max_bytes);
 
-int starline_set_left_margin(char* buf, uint8_t column, int max_bytes);
-int starline_set_right_margin(char* buf, uint8_t column, int max_bytes);
+int starline_set_left_margin(char* buf, int max_bytes, uint8_t column);
+int starline_set_right_margin(char* buf, int max_bytes, uint8_t column);
 
-int starline_feed_lines(char* buf, uint8_t lines, int max_bytes);
+int starline_feed_lines(char* buf, int max_bytes, uint8_t lines);
 
-int starline_define_n_72in_line_spacing(char* buf, uint8_t line_spacing, int max_bytes);
+int starline_define_n_72in_line_spacing(char* buf, int max_bytes, uint8_t line_spacing);
 int starline_set_n_72in_line_spacing(char* buf, int max_bytes);
 
 int starline_set_3mm_line_spacing(char* buf, int max_bytes);
@@ -100,34 +100,34 @@ int starline_set_8in_line_spacing(char* buf, int max_bytes);
 int starline_set_7_72in_line_spacing(char* buf, int max_bytes);
 
 // these are the same
-int starline_n_4mm_feed(char* buf, uint8_t n, int max_bytes);
-int starline_n_72in_feed(char* buf, uint8_t n, int max_bytes);
+int starline_n_4mm_feed(char* buf, int max_bytes, uint8_t n);
+int starline_n_72in_feed(char* buf, int max_bytes, uint8_t n);
 
 // these are the same
-int starline_n_4mm_backfeed(char* buf, uint8_t n, int max_bytes);
-int starline_n_72in_backfeed(char* buf, uint8_t n, int max_bytes);
+int starline_n_4mm_backfeed(char* buf, int max_bytes, uint8_t n);
+int starline_n_72in_backfeed(char* buf, int max_bytes, uint8_t n);
 
-int starline_set_n_216in_line_spacing(char* buf, uint8_t n, int max_bytes);
-int starline_set_n_144in_line_spacing(char* buf, uint8_t n, int max_bytes);
+int starline_set_n_216in_line_spacing(char* buf, int max_bytes, uint8_t n);
+int starline_set_n_144in_line_spacing(char* buf, int max_bytes, uint8_t n);
 
-int starline_n_8mm_feed(char* buf, uint8_t n, int max_bytes);
+int starline_n_8mm_feed(char* buf, int max_bytes, uint8_t n);
 
-int starline_set_vertical_tabstops(char* buf, uint8_t* stops, uint8_t n_stops, int max_bytes);
-int starline_set_horizontal_tabstops(char* buf, uint8_t* stops, uint8_t n_stops, int max_bytes);
+int starline_set_vertical_tabstops(char* buf, int max_bytes, uint8_t* stops, uint8_t n_stops);
+int starline_set_horizontal_tabstops(char* buf, int max_bytes, uint8_t* stops, uint8_t n_stops);
 
-int starline_normal_density_graphics(char* buf, uint8_t* img_data, uint8_t img_data_len, int max_bytes);
-int starline_high_density_graphics(char* buf, uint8_t* img_data, int img_data_len, int max_bytes);
+int starline_normal_density_graphics(char* buf, int max_bytes, uint8_t* img_data, uint8_t img_data_len);
+int starline_high_density_graphics(char* buf, int max_bytes, uint8_t* img_data, int img_data_len);
 
-int starline_fine_density_graphics_k(char* buf, uint8_t* img_data, uint8_t img_data_width, int max_bytes);
-int starline_fine_density_graphics_X(char* buf, uint8_t* img_data, uint8_t img_data_len, int max_bytes);
+int starline_fine_density_graphics_k(char* buf, int max_bytes, uint8_t* img_data, uint8_t img_data_width);
+int starline_fine_density_graphics_X(char* buf, int max_bytes, uint8_t* img_data, uint8_t img_data_len);
 
 //todo: download character messages
 
 //todo: peripheral device control
 
-int starline_cut(char* buf, bool partial, int max_bytes);
+int starline_cut(char* buf, int max_bytes, bool partial);
 
-int starline_slip_sensor_set(char* buf, bool tof, bool bof, int max_bytes);
+int starline_slip_sensor_set(char* buf, int max_bytes, bool tof, bool bof);
 
 enum starline_slip_function_option {
   STARLINE_SLIP_CLAMP = 0,
@@ -138,7 +138,7 @@ enum starline_slip_function_option {
   STARLINE_SLIP_FEED = 5,
 };
 
-int starline_slip_function(char* buf, enum starline_slip_function_option option, int max_bytes);
+int starline_slip_function(char* buf, int max_bytes, enum starline_slip_function_option option);
 
 enum starline_slip_eject_mode {
   STARLINE_MODE_FWDFEED_LINES = '+',
@@ -146,16 +146,16 @@ enum starline_slip_eject_mode {
   STARLINE_MODE_BACKFEED_INCHES = '0'
 };
 
-int starline_set_slip_eject(char* buf, enum starline_slip_eject_mode mode, uint8_t length, int max_bytes);
+int starline_set_slip_eject(char* buf, int max_bytes, enum starline_slip_eject_mode mode, uint8_t length);
 
 // slip enquiry is a single byte and i can't read so i ain't including it rn
 
-int starline_set_clamp_wait_time(char* buf, uint8_t time, int max_bytes);
+int starline_set_clamp_wait_time(char* buf, int max_bytes, uint8_t time);
 
 int starline_enter_page_mode(char* buf, int max_bytes);
 int starline_select_line_mode(char* buf, int max_bytes);
 
-int starline_set_print_area(char* buf, int x, int y, int dx, int dy);
+int starline_set_print_area(char* buf, int max_bytes, int x, int y, int dx, int dy);
 
 enum starline_print_rotation {
   STARLINE_ROT_0 = 0,
@@ -165,7 +165,7 @@ enum starline_print_rotation {
   STARLINE_ROT_270_BIDI = 4
 };
 
-int starline_set_print_direction(char* buf, enum starline_print_rotation rotation, int max_bytes);
+int starline_set_print_direction(char* buf, int max_bytes, enum starline_print_rotation rotation);
 
 // these are one byte commands but non-standard ascii meaning and important enough to include nevertheless imo
 int starline_print_page(char* buf, int max_bytes);
