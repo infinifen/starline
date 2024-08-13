@@ -57,7 +57,7 @@ int starline_set_width(char* buf, int max_bytes, uint8_t width);
 
 int starline_set_doubleheight(char* buf, int max_bytes);
 int starline_reset_height(char* buf, int max_bytes);
-int starline_set_height(char* buf, uint8_t height, int max_bytes);
+int starline_set_height(char* buf, int max_bytes, uint8_t height);
 
 int starline_set_width_height(char* buf, int max_bytes, uint8_t height, uint8_t width);
 
@@ -74,7 +74,7 @@ int starline_reset_invert(char* buf, int max_bytes);
 int starline_set_emphasis(char* buf, int max_bytes);
 int starline_reset_emphasis(char* buf, int max_bytes);
 
-int starline_set_bidirectional(char* buf, int max_bytes, char bidi);
+int starline_set_bidirectional(char* buf, int max_bytes, bool bidi);
 
 int starline_set_page_length_lines(char* buf, int max_bytes, uint8_t lines);
 int starline_set_page_length_inches(char* buf, int max_bytes, uint8_t inches);
@@ -165,7 +165,7 @@ enum starline_print_rotation {
   STARLINE_ROT_270_BIDI = 4
 };
 
-int starline_set_print_direction(char* buf, int max_bytes, enum starline_print_rotation rotation);
+int starline_set_print_rotation(char* buf, int max_bytes, enum starline_print_rotation rotation);
 
 // these are one byte commands but non-standard ascii meaning and important enough to include nevertheless imo
 int starline_print_page(char* buf, int max_bytes);
