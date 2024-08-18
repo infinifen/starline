@@ -121,7 +121,24 @@ int starline_high_density_graphics(char* buf, int max_bytes, uint8_t* img_data, 
 int starline_fine_density_graphics_k(char* buf, int max_bytes, uint8_t* img_data, uint8_t img_data_width);
 int starline_fine_density_graphics_X(char* buf, int max_bytes, uint8_t* img_data, uint8_t img_data_len);
 
-//todo: download character messages
+//todo: function that accepts the actual 12x24 graphics and shifts them accordingly
+int starline_define_thermal_download_character_rawgfx(char* buf, int max_bytes, uint8_t charcode, uint8_t* gfx);
+
+// does Not support defining multiple chars at once!
+enum starline_slip_character_alignment {
+  LOWER = 0x00,
+  UPPER = 0x80
+};
+
+// gfx needs to be 7 bytes
+int starline_define_slip_download_character_7x9(char* buf, int max_bytes, uint8_t charcode, enum starline_slip_character_alignment align, uint8_t* gfx);
+
+// gfx needs to be 5 bytes
+int starline_define_slip_download_character_5x9(char* buf, int max_bytes, uint8_t charcode, enum starline_slip_character_alignment align, uint8_t* gfx);
+
+int starline_delete_thermal_download_character(char* buf, int max_bytes, uint8_t charcode);
+
+int starline_set_download_characters_enabled(char* buf, int max_bytes, bool enabled);
 
 //todo: peripheral device control
 

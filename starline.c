@@ -207,9 +207,64 @@ int starline_fine_density_graphics_X(char* buf, int max_bytes, uint8_t* img_data
   return msg_len;
 }
 
+
+//todo: function that accepts the actual 12x24 graphics and shifts them accordingly
+int starline_define_thermal_download_character_rawgfx(char* buf, int max_bytes, uint8_t charcode, uint8_t* gfx) {
+  // message length = ESC + & + 1 + 1 + n (5 bytes) + 48 data bytes = 53 bytes
+  if (max_bytes < 53) return -53;
+
+  buf[0] = 0x1b;
+  buf[1] = 0x26;
+  buf[2] = 0x01;
+  buf[3] = 0x01;
+  buf[4] = charcode;
+  memcpy(&buf[5], gfx, 48);
+
+  return 53;
+}
+
+// does Not support defining multiple chars at once!
+enum starline_slip_character_alignment {
+  LOWER = 0x00,
+  UPPER = 0x80
+};
+
+// gfx needs to be 7 bytes
+int starline_define_slip_download_character_7x9(char* buf, int max_bytes, uint8_t charcode, enum starline_slip_character_alignment align, uint8_t* gfx) {
+  // message length = ESC + & + 0 + n1 + n2 + 8 data bytes (m0-m7) = 13 bytes
+  if (max_bytes < 13) return -13;
+
+  buf[0] = 0x1b;
+  buf[1] = 0x26;
+  buf[2] = 0x00;
+  buf[3] = charcode;
+  buf[4] = charcode;
+
+  memcpy(&buf[5], gfx, 7);
+  return 13;
+}
+
+// gfx needs to be 5 bytes
+int starline_define_slip_download_character_5x9(char* buf, int max_bytes, uint8_t charcode, enum starline_slip_character_alignment align, uint8_t* gfx) {
+  // message length = ESC + & + 0 + n1 + n2 + 5 data bytes (m0-m7) = 10 bytes
+  if (max_bytes < 10) return -10;
+
+  buf[0] = 0x1b;
+  buf[1] = 0x26;
+  buf[2] = 0x00;
+  buf[3] = charcode;
+  buf[4] = charcode;
+
+  memcpy(&buf[5], gfx, 5);
+  return 10;
+}
+
+ARGSUFFIXCMD(starline_delete_thermal_download_character, ARR({0x1b, 0x26, 0x01, 0x00}), uint8_t, charcode);
+ARGSUFFIXCMD(starline_set_download_characters_enabled, ARR({0x1b, 0x25}), bool, enabled);
+
 ARGSUFFIXCMD(starline_cut, ARR({0x1b, 0x64}), bool, partial);
 
-int starline_slip_sensor_set(char* buf, int max_bytes, bool tof, bool bof) { 
+int starline_slip_sensor_set(char* buf, int max_bytes, bool tof, bool bof) {
   if (max_bytes < 3) return -3;
 
   buf[0] = 0x1b;
