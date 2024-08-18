@@ -223,12 +223,7 @@ int starline_define_thermal_download_character_rawgfx(char* buf, int max_bytes, 
   return 53;
 }
 
-// does Not support defining multiple chars at once!
-enum starline_slip_character_alignment {
-  LOWER = 0x00,
-  UPPER = 0x80
-};
-
+// does not support defining multiple chars at once!
 // gfx needs to be 7 bytes
 int starline_define_slip_download_character_7x9(char* buf, int max_bytes, uint8_t charcode, enum starline_slip_character_alignment align, uint8_t* gfx) {
   // message length = ESC + & + 0 + n1 + n2 + 8 data bytes (m0-m7) = 13 bytes
@@ -244,6 +239,7 @@ int starline_define_slip_download_character_7x9(char* buf, int max_bytes, uint8_
   return 13;
 }
 
+// does not support defining multiple chars at once!
 // gfx needs to be 5 bytes
 int starline_define_slip_download_character_5x9(char* buf, int max_bytes, uint8_t charcode, enum starline_slip_character_alignment align, uint8_t* gfx) {
   // message length = ESC + & + 0 + n1 + n2 + 5 data bytes (m0-m7) = 10 bytes
