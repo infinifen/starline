@@ -29,7 +29,7 @@
 
 
 RAWCMD(starline_select_thermal, ARR({0x1b, 0x2b, 0x41, 0x00}));
-RAWCMD(starline_select_slip, ARR({0x1b, 0x2b, 0x41, 0x00}));
+RAWCMD(starline_select_slip, ARR({0x1b, 0x2b, 0x41, 0x03}));
 ARGSUFFIXCMD(starline_set_charset, ARR({0x1b, 0x52}), uint8_t, charset);
 ARGSUFFIXCMD(starline_set_zero_style, ARR({0x1b, 0x2f}), bool, slashed);
 ARGSUFFIXCMD(starline_set_character_spacing, ARR({0x1b, 0x20}), uint8_t, spacing);
