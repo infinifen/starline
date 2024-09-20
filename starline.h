@@ -119,7 +119,7 @@ int starline_normal_density_graphics(char* buf, int max_bytes, uint8_t* img_data
 int starline_high_density_graphics(char* buf, int max_bytes, uint8_t* img_data, int img_data_len);
 
 int starline_fine_density_graphics_k(char* buf, int max_bytes, uint8_t* img_data, uint8_t img_data_width);
-int starline_fine_density_graphics_X(char* buf, int max_bytes, uint8_t* img_data, uint8_t img_data_len);
+int starline_fine_density_graphics_X(char* buf, int max_bytes, uint8_t* img_data, int img_data_len);
 
 //todo: function that accepts the actual 12x24 graphics and shifts them accordingly
 int starline_define_thermal_download_character_rawgfx(char* buf, int max_bytes, uint8_t charcode, uint8_t* gfx);
