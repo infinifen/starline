@@ -195,7 +195,7 @@ int starline_fine_density_graphics_k(char* buf, int max_bytes, uint8_t* img_data
 }
 
 // documentation is very unclear on what the actual data length is; the 3 * is guesswork
-int starline_fine_density_graphics_X(char* buf, int max_bytes, uint8_t* img_data, uint8_t img_data_len) {
+int starline_fine_density_graphics_X(char* buf, int max_bytes, uint8_t* img_data, int img_data_len) {
   int msg_len = 4 + 3 * img_data_len;
   if (max_bytes < msg_len) return -msg_len;
 
