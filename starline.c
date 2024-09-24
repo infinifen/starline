@@ -63,11 +63,11 @@ RAWCMD(starline_set_pitch_16, ARR({0x1b, 0x3a}));
 RAWCMD(starline_set_triplepulse, ARR({0x1b, 0x3a}));
 
 RAWCMD(starline_set_doublewidth, ARR({0x0e}));
-RAWCMD(starline_reset_doublewidth, ARR({0x14}));
+RAWCMD(starline_reset_width, ARR({0x14}));
 ARGSUFFIXCMD(starline_set_width, ARR({0x1b, 0x57}), uint8_t, width);
 
 RAWCMD(starline_set_doubleheight, ARR({0x1b, 0x0e}));
-RAWCMD(starline_reset_doubleheight, ARR({0x1b, 0x14}));
+RAWCMD(starline_reset_height, ARR({0x1b, 0x14}));
 ARGSUFFIXCMD(starline_set_height, ARR({0x1b, 0x68}), uint8_t, height);
 
 
@@ -309,7 +309,7 @@ int starline_set_print_area(char* buf, int max_bytes, int x, int y, int dx, int 
   return 10;
 }
 
-ARGSUFFIXCMD(starline_set_rotation, ARR({0x1b, 0x54}), enum starline_print_rotation, rotation);
+ARGSUFFIXCMD(starline_set_print_rotation, ARR({0x1b, 0x54}), enum starline_print_rotation, rotation);
 
 
 RAWCMD(starline_print_page, ARR({0x0c}));
@@ -318,3 +318,4 @@ RAWCMD(starline_deselect, ARR({0x13}));
 RAWCMD(starline_select, ARR({0x11}));
 RAWCMD(starline_beep, ARR({0x1e}));
 RAWCMD(starline_reset_and_test, ARR({0x1b, 0x3f, 0x0a, 0x00}));
+RAWCMD(starline_initialize, ARR({0x1b, 0x40}));
