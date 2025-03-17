@@ -20,7 +20,7 @@
   {                                                                     \
     char cmd[] = CMD_ARRAY;                                             \
     int len_fixed = sizeof(cmd) / sizeof(char);                               \
-    if(max_bytes < len_fixed + 1) return -len_fixed;                                    \
+    if(max_bytes < len_fixed + 1) return -len_fixed - 1;                                    \
     memcpy(buf, cmd, len_fixed); \
     buf[len_fixed] = PARAM_NAME;                                                           \
     return len_fixed + 1;                                                         \
